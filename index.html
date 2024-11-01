@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .success-message {
+            color: green;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Top Up Game</h2>
+        <form id="topupForm">
+            <div class="form-group">
+                <label for="gameId">ID Pengguna</label>
+                <input type="text" id="gameId" placeholder="Masukkan ID Pengguna" required>
+            </div>
+            <div class="form-group">
+                <label for="nominal">Pilih Nominal</label>
+                <select id="nominal" required>
+                    <option value="">Pilih nominal</option>
+                    <option value="10000">10.000 IDR</option>
+                    <option value="20000">20.000 IDR</option>
+                    <option value="50000">50.000 IDR</option>
+                    <option value="100000">100.000 IDR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Metode Pembayaran</label>
+                <select id="paymentMethod" required>
+                    <option value="">Pilih metode pembayaran</option>
+                    <option value="gopay">GoPay</option>
+                    <option value="ovo">OVO</option>
+                    <option value="dana">Dana</option>
+                    <option value="bank">Transfer Bank</option>
+                </select>
+            </div>
+            <button type="button" class="btn" onclick="topUp()">Top Up Sekarang</button>
+            <p id="successMessage" class="success-message" style="display: none;">Top Up berhasil!</p>
+        </form>
+    </div>
+
+    <script>
+        function topUp() {
+            const gameId = document.getElementById("gameId").value;
+            const nominal = document.getElementById("nominal").value;
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            
+            if (gameId && nominal && paymentMethod) {
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("topupForm").reset();
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none";
+                }, 3000);
+            } else {
+                alert("Mohon lengkapi semua data.");
+            }
+        }
+    </script>
+</body>
+</html>
